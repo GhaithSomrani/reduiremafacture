@@ -1,0 +1,74 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+
+interface MenuResponse {
+  count: number;
+  description: string;
+  filter: string;
+  items: MenuItem[];
+  name: string;
+  parent: number;
+  slug: string;
+  taxonomy: string;
+  term_group: number;
+  term_id: number;
+  term_taxonomy_id: number;
+}
+
+interface MenuItem {
+  title: string;
+  url: string;
+}
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
+})
+export class NavbarComponent implements OnInit {
+  menuItems!: any[];
+  searchQuery: string = ''; // add the searchQuery property
+  searchResults: any[] = [];
+
+
+  constructor(private http: HttpClient) { }
+
+  getMenuItems(menuId: number): Observable<any[]> {
+    const url = `https://reduiremafacture.fr/wp-json/menus/v1/menus/${menuId}`;
+
+    return this.http.get<any[]>(url);
+  }
+
+  ngOnInit() {
+    this.http.get<MenuResponse>('https://reduiremafacture.fr/wp-json/menus/v1/menus/top-menu').subscribe(response => {
+      this.menuItems = response.items;
+      console.log('Number of menu items:', response);
+      this.menuItems.forEach(element => {
+        console.log(element.child_items)
+
+      });
+    });
+  }
+
+  toggleSubMenu(event: MouseEvent) {
+    event.stopPropagation();
+    const toggle = event.target as HTMLElement;
+    const submenu = toggle.nextElementSibling as HTMLElement;
+    submenu.classList.toggle('show');
+    toggle.textContent = toggle.textContent === '+' ? '-' : '+';
+  }
+  search() {
+    // fetch search results from WordPress API
+    this.http.get<any[]>('https://reduiremafacture.fr/wp-json/wp/v2/posts?search=' + this.searchQuery).subscribe(
+      (response) => {
+        this.searchResults = response;
+        console.log(this.searchResults)
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+}
+

@@ -1,0 +1,108 @@
+::ng-deep nav ul {
+  padding: 0px 3vw 0px 3vw;
+  display: grid;
+  flex-direction: row;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  li#search {
+    margin-left: auto;
+  }
+
+  li.list-element {
+
+    a {
+      text-align: center;
+      font-weight: 500;
+    }
+  }
+}
+
+
+::ng-deep nav {
+  width: 100vw;
+  position: fixed;
+  background: #F9F9F9;
+  box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.15);
+
+}
+
+li.logo {
+  grid-column: 1 / span 2;
+  margin-right: 10vw;
+}
+
+::ng-deep nav li {
+  padding: 10px;
+  list-style-type: none;
+}
+
+
+.toggle {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.searchmenu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+
+  li {
+    padding: 20px;
+
+  }
+
+  li:hover {
+    background-color: #bababa;
+  }
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+
+  li {
+    padding: 20px;
+
+  }
+
+  li:hover {
+    background-color: #bababa;
+  }
+}
+
+.submenu.show {
+  display: block;
+  opacity: 1;
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+li:hover>.submenu {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-10%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
