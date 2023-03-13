@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 
 
 interface MenuResponse {
@@ -31,6 +33,7 @@ export class NavbarComponent implements OnInit {
   searchQuery: string = ''; // add the searchQuery property
   searchResults: any[] = [];
 
+  faSearch = faSearch;
 
   constructor(private http: HttpClient) { }
 
@@ -50,6 +53,19 @@ export class NavbarComponent implements OnInit {
       });
     });
   }
+
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  isOpen = false;
+
+toggleopen(){
+
+  this.isOpen = !this.isOpen;
+}
 
   toggleSubMenu(event: MouseEvent) {
     event.stopPropagation();

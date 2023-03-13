@@ -8,18 +8,21 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomepageComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

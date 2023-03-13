@@ -1,23 +1,37 @@
 <nav>
-  <ul>
-    <li class="logo"> <img src="assets/img/logo.png" alt="logo" width="100px"></li>
-    <ng-container *ngFor="let menuItem of menuItems">
+  <div class="logo"> <img src="assets/img/logo.png" alt="logo" width="100px"></div>
+  <div class="hamburger" [ngClass]="{'menu-open': menuOpen}">
+    <button class="hamburger-icon" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="menu">
 
-      <li class="list-element">
-        <a [href]="menuItem.url">{{ menuItem.title }}</a>
-        <span class="toggle" *ngIf="menuItem.child_items" (click)="toggleSubMenu($event)">+</span>
-        <ng-container *ngIf="menuItem.child_items">
-          <ng-container  *ngTemplateOutlet="childMenu; context: { itemsc: menuItem.child_items }"></ng-container>
-        </ng-container>
-      </li>
+    <ul [ngClass]="{'menu-open': menuOpen}" >
+      <ng-container *ngFor="let menuItem of menuItems">
+        <li class="list-element">
+          <a [href]="menuItem.url" class="isopen" >{{ menuItem.title }}</a>
+          <span class="toggle" *ngIf="menuItem.child_items" (click)="toggleSubMenu($event)">+</span>
+          <ng-container *ngIf="menuItem.child_items">
+            <ng-container *ngTemplateOutlet="childMenu; context: { itemsc: menuItem.child_items }"></ng-container>
+          </ng-container>
+        </li>
+      </ng-container>
+    </ul>
+
+  </div>
+
+  <div class="search" id="search">
+    <fa-icon [icon]="faSearch"></fa-icon>
+    <input [(ngModel)]="searchQuery" (keyup.enter)="search()">
+    <ng-container *ngIf="searchResults && searchResults.length > 0">
+      <ng-container *ngTemplateOutlet="searchMenu; context: { searchResults: searchResults}"></ng-container>
     </ng-container>
-    <li class="search" id="search">
-      <input [(ngModel)]="searchQuery" (keyup.enter)="search()" placeholder="Search">
-      <ng-container  *ngIf="searchResults && searchResults.length > 0">
-        <ng-container *ngTemplateOutlet="searchMenu; context: { searchResults: searchResults}"></ng-container>
-      </ng-container >
-    </li>
-  </ul>
+  </div>
+
+
 </nav>
 
 <ng-template #childMenu let-itemsc="itemsc">
@@ -37,7 +51,7 @@
 
 <ng-template #searchMenu let-searchResults="searchResults">
   <ul class="searchmenu">
-    <ng-container  *ngFor="let post of searchResults">
+    <ng-container *ngFor="let post of searchResults">
       <li>
         <a [href]="post.link">{{post.title.rendered }}</a>
       </li>

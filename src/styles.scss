@@ -3,7 +3,32 @@
 
 body {
   font-family: 'Montserrat';
-  font-size:16px;
+  @media only screen and (max-width: 320px) {
+    font-size:16px;
+  }
+
+  /* Styles for screens between 321px and 480px */
+  @media only screen and (min-width: 321px) and (max-width: 480px) {
+    font-size:16px;
+  }
+
+  /* Styles for screens between 481px and 768px */
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    font-size:14px;
+  }
+
+  /* Styles for screens between 769px and 1024px */
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    font-size:14px;  }
+
+  /* Styles for screens between 1025px and 1280px */
+  @media only screen and (min-width: 1025px) and (max-width: 1366px) {
+    font-size:13px;  }
+
+  /* Styles for screens with a width of 1281px or more */
+  @media only screen and (min-width:1376px) {
+    font-size:16px;
+  }
 }
 
 
@@ -12,3 +37,6 @@ a {
   text-decoration: none;
   color: black;
 }
+
+
+

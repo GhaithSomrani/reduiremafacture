@@ -1,29 +1,33 @@
-::ng-deep nav ul {
-  padding: 0px 3vw 0px 3vw;
-  display: grid;
-  flex-direction: row;
-  align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  li#search {
-    margin-left: auto;
-  }
-
-  li.list-element {
-
-    a {
-      text-align: center;
-      font-weight: 500;
-    }
-  }
-}
-
-
 ::ng-deep nav {
   width: 100vw;
   position: fixed;
-  background: #F9F9F9;
-  box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.15);
+  background: #f9f9f9;
+  box-shadow: 0 4px 21px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  top: 0;
+  left: 0;
+}
 
+::ng-deep nav .menu {
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+::ng-deep nav ul {
+  gap: 3vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+::ng-deep nav ul li.list-element a {
+  text-align: center;
+  font-weight: 500;
 }
 
 li.logo {
@@ -32,10 +36,9 @@ li.logo {
 }
 
 ::ng-deep nav li {
-  padding: 10px;
+  padding: 5px;
   list-style-type: none;
 }
-
 
 .toggle {
   cursor: pointer;
@@ -49,18 +52,34 @@ li.logo {
   padding: 0;
   margin: 0;
   background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
   transition: opacity 0.3s ease-in-out;
+}
 
-  li {
-    padding: 20px;
+.searchmenu li {
+  padding: 20px;
+}
 
-  }
+.searchmenu li:hover {
+  background-color: #bababa;
+}
 
-  li:hover {
-    background-color: #bababa;
-  }
+#search {
+  flex-shrink: 5;
+}
+
+#search input {
+  border: none;
+  background: #e6e6e6;
+  border-radius: 300px;
+}
+
+#search fa-icon {
+  position: absolute;
+  font-size: 1rem;
+  color: #000;
+  opacity: 0.2;
 }
 
 .submenu {
@@ -70,19 +89,18 @@ li.logo {
   padding: 0;
   margin: 0;
   background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
+}
 
-  li {
-    padding: 20px;
+.submenu li {
+  padding: 20px;
+}
 
-  }
-
-  li:hover {
-    background-color: #bababa;
-  }
+.submenu li:hover {
+  background-color: #bababa;
 }
 
 .submenu.show {
@@ -93,8 +111,35 @@ li.logo {
   animation-timing-function: ease-in-out;
 }
 
-li:hover>.submenu {
+li:hover > .submenu {
   opacity: 1;
+}
+
+.hamburger {
+  display: none;
+}
+
+
+.list-element a:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -4px;
+
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 0%;
+  background: rgb(0, 0, 0);
+
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.list-element a .isopen:after {
+  width: 80%;
 }
 
 @keyframes slideIn {
@@ -104,5 +149,108 @@ li:hover>.submenu {
 
   100% {
     transform: translateY(0%);
+  }
+}
+
+@media (max-width: 480px) {
+  .submenu {
+    position: relative;
+    box-shadow: none;
+  }
+  #search {
+    order: 3;
+    padding: 2vw;
+    flex-basis: 100%;
+  }
+
+  #search input {
+    width: 90%;
+  }
+
+  .logo {
+    order: 1;
+    padding-left: 1vw;
+    margin-right: auto;
+  }
+
+  nav {
+    padding-top: 1vw;
+    top: 0;
+    left: 0;
+    display: flex;
+    gap: 1vw;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ul {
+    display: none;
+  }
+
+  .menu-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger {
+    order: 2;
+    padding-right: 1vw;
+    justify-self: flex-end;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .hamburger-icon span:first-child {
+    transform-origin: top;
+  }
+
+  .hamburger-icon span:last-child {
+    transform-origin: bottom;
+  }
+
+  .menu-open .list-element {
+    text-align: left;
+    display: block;
+  }
+
+  .menu-open .hamburger-icon span:first-child {
+    transform: rotate(45deg) translate(10px, 10px);
+  }
+
+  .menu-open .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-open .hamburger-icon span:last-child {
+    transform: rotate(-45deg) translate(3px, -3px);
   }
 }
