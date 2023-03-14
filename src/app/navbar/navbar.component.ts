@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -62,17 +62,22 @@ export class NavbarComponent implements OnInit {
 
   isOpen = false;
 
-toggleopen(){
 
-  this.isOpen = !this.isOpen;
-}
 
   toggleSubMenu(event: MouseEvent) {
-    event.stopPropagation();
+    event.preventDefault();
     const toggle = event.target as HTMLElement;
-    const submenu = toggle.nextElementSibling as HTMLElement;
+    const underline = toggle.children[0] as HTMLElement ;
+    console.log(underline)
+    const submenu = toggle.children[1] as HTMLElement;
+    console.log(submenu)
+
+
+
+    underline.classList.toggle('isopen');
     submenu.classList.toggle('show');
-    toggle.textContent = toggle.textContent === '+' ? '-' : '+';
+
+    this.isOpen = !this.isOpen;
   }
   search() {
     // fetch search results from WordPress API

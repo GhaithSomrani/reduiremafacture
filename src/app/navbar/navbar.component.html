@@ -7,13 +7,11 @@
       <span></span>
     </button>
   </div>
-  <div class="menu">
 
-    <ul [ngClass]="{'menu-open': menuOpen}" >
+    <ul class="menu" [ngClass]="{'menu-open': menuOpen}" >
       <ng-container *ngFor="let menuItem of menuItems">
-        <li class="list-element">
-          <a [href]="menuItem.url" class="isopen" >{{ menuItem.title }}</a>
-          <span class="toggle" *ngIf="menuItem.child_items" (click)="toggleSubMenu($event)">+</span>
+        <li class="list-element toggle"  (click)="toggleSubMenu($event)">
+          <a [href]="menuItem.url">{{ menuItem.title }}</a>
           <ng-container *ngIf="menuItem.child_items">
             <ng-container *ngTemplateOutlet="childMenu; context: { itemsc: menuItem.child_items }"></ng-container>
           </ng-container>
@@ -21,7 +19,6 @@
       </ng-container>
     </ul>
 
-  </div>
 
   <div class="search" id="search">
     <fa-icon [icon]="faSearch"></fa-icon>
