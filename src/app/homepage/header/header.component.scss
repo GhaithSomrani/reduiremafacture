@@ -1,0 +1,97 @@
+::ng-deep .box {
+  position: absolute;
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 1.5rem;
+  top: 10rem;
+  right: 5rem;
+  svg {
+    width: 4rem;
+    height: auto;
+    position: inherit;
+    bottom: 0rem;
+    right: -2rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .details {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    padding-left: 3rem;
+    .info {
+
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 0.5rem;
+      .num {
+        font-weight: 900;
+        font-size: 3rem;
+        padding-right: 0.5rem;
+      }
+      .TXT{
+        font-weight: 400;
+        line-height: 20px;
+
+      }
+      :nth-child(n){
+        align-items: center;
+        display: flex;
+      }
+    }
+  }
+
+  .header-img {
+    img {
+      width: 100%;
+      height: auto;
+    }
+    flex: 3;
+  }
+}
+.important {
+  color: var(--pink);
+}
+.M {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+.XL {
+  font-weight: bolder;
+  font-size: 4rem;
+}
+.L {
+  font-weight: bolder;
+  font-size: 3rem;
+}
+
+.S {
+  font-weight: bolder;
+  color: #c9c9c9;
+  font-size: 1rem;
+}
+
+.XS {
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+.en-savoir-plus {
+  font-weight: bolder;
+  color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  height: 3rem;
+  width: 15rem;
+  background-color: var(--pink);
+  border-radius: 34.5px;
+  box-shadow: 0 4px 5px #00000040;
+}

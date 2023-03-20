@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './homepage/header/header.component';
+import { ImgDimensionsDirective } from './img-dimensions.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     HomepageComponent,
     FooterComponent,
+    HeaderComponent,
+    ImgDimensionsDirective,
   ],
   imports: [HttpClientModule,
     BrowserModule,
